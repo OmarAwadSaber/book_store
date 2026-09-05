@@ -37,3 +37,9 @@ def update_book(request, book_id):
     else:
         form = BookForm(instance=book)
     return render(request, 'books/book_form.html', {'form' : form, "message" : "Update book"})
+
+
+def delete_book(request, book_id):
+    book = get_object_or_404(Book, id = book_id)
+    book.delete()
+    return redirect('books_list')
