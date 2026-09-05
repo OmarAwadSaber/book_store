@@ -4,7 +4,7 @@
 {% for book in books_list %}
     id: {{ book.id }}
     </br>
-    title: {{ book.title }}
+    title:<a href = "{% url 'book_detail' book.id %}"> {{ book.title }}</a>
     </br>
     price: {{ book.price }}
     </br>

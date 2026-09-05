@@ -1,0 +1,13 @@
+<h1> {{category.name}} Books List </h1>
+
+<h1>
+{% for book in books %}
+    id: {{ book.id }}
+    </br>
+    title: {{ book.title }}
+    </br>
+    price: {{ book.price }}
+    </br>
+    </br>
+{% endfor %}
+</h1>

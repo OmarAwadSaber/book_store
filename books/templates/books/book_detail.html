@@ -9,7 +9,7 @@
 </br>
     stock: {{book.stock}}
 </br>
-    category: {{book.category}}
+    category: <a href = "{% url 'category_books' book.category.id %}">{{book.category}} </a>
 </br>
     publication date: {{book.publication_date}}
 </br>
