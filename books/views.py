@@ -24,5 +24,16 @@ def create_book(request):
             return redirect('books_list')
     else:
         form = BookForm()
-    return render(request, 'books/book_form.html', {'form' : form})
+    return render(request, 'books/book_form.html', {'form' : form, "message" : "Create New Book"})
     
+    
+def update_book(request, book_id):
+    book = get_object_or_404(Book, id = book_id)
+    if request.method == "POST" :
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('book_detail',book_id = book_id)
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'books/book_form.html', {'form' : form, "message" : "Update book"})
