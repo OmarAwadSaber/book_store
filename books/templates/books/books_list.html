@@ -1,6 +1,10 @@
 <h1>Books List </h1>
-
+<a href = "{% url 'create_book' %}">
+    <h1>create book</h1>
+</a>
 <h1>
+</br>
+
 {% for book in books_list %}
     id: {{ book.id }}
     </br>

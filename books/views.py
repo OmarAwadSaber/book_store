@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book, Category
+from .forms import BookForm
 
 def books_list(request):
     books = Book.objects.all()
@@ -14,3 +15,14 @@ def category_books(request, category_id):
     category_object = get_object_or_404(Category, id = category_id)
     books = Book.objects.filter(category=category_object)
     return render(request, 'books/category_books.html', {"books" : books, "category" : category_object})
+
+def create_book(request):
+    if request.method == "POST" : 
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('books_list')
+    else:
+        form = BookForm()
+    return render(request, 'books/book_form.html', {'form' : form})
+    
